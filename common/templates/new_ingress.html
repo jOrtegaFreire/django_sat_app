@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block DateTimePickerStyles %}
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css'%}">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'%}">
+{% endblock %}
+
+
+
+{% block user_name %}
+<a href="#" class="d-block">{{ user }}</a>
+{% endblock %}
+{% block content %}
+<!-- general form elements disabled -->
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <div class="card card-warning">
+      <div class="card-header">
+        <h3 class="card-title">New Appliance Ingress</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form class="justify-content-center" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>Date:</label>
+                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                      {{ form.ingress_date }}
+                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
+              </div>  
+            </div>  
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Client ID</label>
+                {{ form.client_id }}
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>First Name</label>
+                {{ form.first_name }}
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Last Name</label>
+                {{ form.last_name }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Email</label>
+                {{ form.email }}
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Phone</label>
+                {{ form.phone_number }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Appliance type</label>
+                {{ form.appliance_type }}
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Brand</label>
+                {{ form.appliance_brand }}
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Model</label>
+                {{ form.appliance_model }}
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>S/N</label>
+                {{ form.appliance_sn }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Failure Description</label>
+                {{ form.failure_description }}
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Inspection Status</label>
+                {{ form.inspection_status }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Accessories</label>
+                {{ form.accessories }}
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-sm-2">
+                <a href="/" class="btn btn-primary btn-block">Cancel</a>
+              </div>
+            <div class="col-sm-8"></div>
+              <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-block" name="next" id="next">Next</button>
+              </div>    
+          </div>
+        </form>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block DateTimePickerScripts %}
+<!-- InputMask -->
+<script src="{% static 'plugins/moment/moment.min.js'%}"></script>
+<script src="{% static 'plugins/inputmask/jquery.inputmask.min.js'%}"></script>
+<!-- date-range-picker -->
+<script src="{% static 'plugins/daterangepicker/daterangepicker.js'%}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{% static 'plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js'%}"></script>
+
+{% endblock %}
+{% block DateTimePickerSpecific %}
+<script>
+  $(function () {
+    //Date picker
+    $('#reservationdate').datetimepicker({
+        format: 'DD/MM/YY'
+    });
+  })
+</script>
+{% endblock %}

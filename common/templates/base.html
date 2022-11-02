@@ -10,8 +10,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css'%}">
+  {% block DateTimePickerStyles %}{% endblock %}
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css'%}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{% static 'plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css'%}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{% static 'plugins/toastr/toastr.min.css'%}">  
+  {% block DataTablesStyles %}{% endblock %}  
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css'%}">
 </head>
@@ -209,21 +215,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/inventory/stock.html" class="nav-link">
+                <a href="stock.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Stock</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/inventory/add_component.html" class="nav-link">
+                <a href="add_component.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Component</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/inventory/edit_component.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Edit Component</p>
                 </a>
               </li>
             </ul>
@@ -238,19 +238,67 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/repairs/ingress.html" class="nav-link">
+                <a href="ingress.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ingress</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/repairs/update.html" class="nav-link">
+                <a href="ingress_all.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Update</p>
+                  <p>All</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/repairs/reports.html" class="nav-link">
+                <a href="ingress_recieved.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Received</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="ingress_inspecting.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inspecting</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="show_awaiting_approval.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Awaiting Approval</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="ingress_repairing.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Repairing</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="ingress_repaired.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Repaired</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="ingress_delivered.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Delivered</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="ingress_pending_return.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pending Return</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="ingress_returned.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Returned</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="repairs_reports.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reports</p>
                 </a>
@@ -267,25 +315,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/clients/clients.html" class="nav-link">
+                <a href="clients.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Clients</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/clients/add_client.html" class="nav-link">
+                <a href="add_client.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Client</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/clients/edit_client.html" class="nav-link">
+                <a href="edit_client.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Edit Client</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/clients/reports.html" class="nav-link">
+                <a href="clients_reports.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reports</p>
                 </a>
@@ -302,31 +350,31 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/finances/expenses.html" class="nav-link">
+                <a href="expenses.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Expenses</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/finances/add_expenses.html" class="nav-link">
+                <a href="add_expenses.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Expenses</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/finances/deposits.html" class="nav-link">
+                <a href="deposits.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Deposits</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/finances/add_deposit.html" class="nav-link">
+                <a href="add_deposit.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Deposit</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/finances/reports.html" class="nav-link">
+                <a href="finances_reports.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reports</p>
                 </a>
@@ -343,24 +391,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
+  <br><br>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -397,8 +428,20 @@
 <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 <!-- overlayScrollbars -->
 <script src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js'%}"></script>
+<!-- SweetAlert2 -->
+<script src="{% static 'plugins/sweetalert2/sweetalert2.min.js'%}"></script>
+<!-- Toastr -->
+<script src="{% static 'plugins/toastr/toastr.min.js'%}"></script>
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js'%}"></script>
+{% block DateTimePickerScripts %}{% endblock %}
+{% block DataTablesScripts %}{% endblock %}
+{% block DataTablesSpecific %}{% endblock %}
+{% block DateTimePickerSpecific %}{% endblock %}
+
+<div id="toastsContainerTopRight" class="toasts-top-right fixed"></div>
+{% block toast %}
+{% endblock %}
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->

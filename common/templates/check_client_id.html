@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block user_name %}
+<a href="#" class="d-block">{{ user }}</a>
+{% endblock %}
+{% block content %}
+<!-- general form elements disabled -->
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <div class="card card-warning">
+      <div class="card-header">
+        <h3 class="card-title">Client Id</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form class="justify-content-center" method="post">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Client ID</label>
+                {{ form.client_id }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-10"></div>
+            <div class="col-sm-2">
+              <button type="submit" class="btn btn-primary btn-block">Next</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+</div>
+{% endblock %}
